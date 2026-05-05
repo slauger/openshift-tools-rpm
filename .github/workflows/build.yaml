@@ -36,7 +36,7 @@ jobs:
           chmod +x /usr/local/bin/yq
           # Install nfpm
           NFPM_VERSION=$(curl -s https://api.github.com/repos/goreleaser/nfpm/releases/latest | grep tag_name | cut -d'"' -f4 | sed 's/v//')
-          dnf install -y "https://github.com/goreleaser/nfpm/releases/download/v${NFPM_VERSION}/nfpm_${NFPM_VERSION}_amd64.rpm"
+          dnf install -y "https://github.com/goreleaser/nfpm/releases/download/v${NFPM_VERSION}/nfpm-${NFPM_VERSION}-1.x86_64.rpm"
 
       - name: Download all binaries
         run: make download
