@@ -1,0 +1,5 @@
+[openshift-tools]
+name=OpenShift Tools
+baseurl=https://slauger.github.io/openshift-tools-rpm/
+enabled=1
+gpgcheck=0

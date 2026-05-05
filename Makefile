@@ -26,6 +26,7 @@ repo:
 	rm -rf $(REPO_DIR)
 	mkdir -p $(REPO_DIR)
 	find $(ROOT_DIR)/packages -name '*.rpm' -exec cp {} $(REPO_DIR)/ \;
+	cp $(ROOT_DIR)/static/* $(REPO_DIR)/
 	createrepo_c $(REPO_DIR)
 
 clean:
