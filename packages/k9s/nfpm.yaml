@@ -1,0 +1,16 @@
+name: k9s
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Kubernetes CLI to manage your clusters in style
+vendor: Fernand Galiana
+homepage: https://k9scli.io
+license: Apache-2.0
+
+contents:
+  - src: ./bin/k9s
+    dst: /usr/local/bin/k9s
+    file_info:
+      mode: 0755

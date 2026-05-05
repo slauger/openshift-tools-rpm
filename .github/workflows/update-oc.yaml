@@ -1,0 +1,52 @@
+name: Update OpenShift Client version
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-oc:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install yq
+        run: |
+          curl -sSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq
+          chmod +x /usr/local/bin/yq
+
+      - name: Check for new OCP version
+        run: ./scripts/update-oc-version.sh
+
+      - name: Create PR if version changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet versions.yaml; then
+            echo "No update"
+            exit 0
+          fi
+
+          VERSION=$(yq '.packages.oc.version' versions.yaml)
+          BRANCH="automated/oc-${VERSION}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add versions.yaml
+          git commit -m "Update oc to ${VERSION}"
+          git push origin "${BRANCH}"
+
+          gh pr create \
+            --title "Update oc to ${VERSION}" \
+            --body "Automated update from Cincinnati stable channel." \
+            --base main \
+            --label "automerge"
+
+          gh pr merge "${BRANCH}" --auto --squash

@@ -1,0 +1,21 @@
+name: kubectx
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Switch between Kubernetes contexts and namespaces
+vendor: Ahmet Alp Balkan
+homepage: https://github.com/ahmetb/kubectx
+license: Apache-2.0
+
+contents:
+  - src: ./bin/kubectx
+    dst: /usr/local/bin/kubectx
+    file_info:
+      mode: 0755
+
+  - src: ./bin/kubens
+    dst: /usr/local/bin/kubens
+    file_info:
+      mode: 0755

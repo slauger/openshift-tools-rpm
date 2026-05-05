@@ -1,0 +1,117 @@
+packages:
+  helm:
+    # renovate: datasource=github-releases depName=helm/helm
+    version: "4.1.4"
+    url: "https://get.helm.sh/helm-v${VERSION}-linux-amd64.tar.gz"
+    extract: "linux-amd64/helm"
+    binary: helm
+
+  oc:
+    # managed by .github/workflows/update-oc.yaml (Cincinnati API)
+    version: "4.17.12"
+    url: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${VERSION}/openshift-client-linux.tar.gz"
+    extract: "oc"
+    binary: oc
+
+  kubectl:
+    # renovate: datasource=github-releases depName=kubernetes/kubernetes
+    version: "1.36.0"
+    url: "https://dl.k8s.io/release/v${VERSION}/bin/linux/amd64/kubectl"
+    binary: kubectl
+
+  yq:
+    # renovate: datasource=github-releases depName=mikefarah/yq
+    version: "4.53.2"
+    url: "https://github.com/mikefarah/yq/releases/download/v${VERSION}/yq_linux_amd64.tar.gz"
+    extract: "./yq_linux_amd64"
+    binary: yq
+
+  kubectx:
+    # renovate: datasource=github-releases depName=ahmetb/kubectx
+    version: "0.11.0"
+    url: "https://github.com/ahmetb/kubectx/releases/download/v${VERSION}/kubectx_v${VERSION}_linux_x86_64.tar.gz"
+    extract: "kubectx"
+    binary: kubectx
+    extra_url: "https://github.com/ahmetb/kubectx/releases/download/v${VERSION}/kubens_v${VERSION}_linux_x86_64.tar.gz"
+    extra_extract: "kubens"
+    extra_binary: kubens
+
+  argocd:
+    # renovate: datasource=github-releases depName=argoproj/argo-cd
+    version: "3.3.9"
+    url: "https://github.com/argoproj/argo-cd/releases/download/v${VERSION}/argocd-linux-amd64"
+    binary: argocd
+
+  tkn:
+    # renovate: datasource=github-releases depName=tektoncd/cli
+    version: "0.44.1"
+    url: "https://github.com/tektoncd/cli/releases/download/v${VERSION}/tkn_${VERSION}_Linux_x86_64.tar.gz"
+    extract: "tkn"
+    binary: tkn
+
+  virtctl:
+    # renovate: datasource=github-releases depName=kubevirt/kubevirt
+    version: "1.8.2"
+    url: "https://github.com/kubevirt/kubevirt/releases/download/v${VERSION}/virtctl-v${VERSION}-linux-amd64"
+    binary: virtctl
+
+  trivy:
+    # renovate: datasource=github-releases depName=aquasecurity/trivy
+    version: "0.70.0"
+    url: "https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz"
+    extract: "trivy"
+    binary: trivy
+
+  conftest:
+    # renovate: datasource=github-releases depName=open-policy-agent/conftest
+    version: "0.68.2"
+    url: "https://github.com/open-policy-agent/conftest/releases/download/v${VERSION}/conftest_${VERSION}_Linux_x86_64.tar.gz"
+    extract: "conftest"
+    binary: conftest
+
+  velero:
+    # renovate: datasource=github-releases depName=vmware-tanzu/velero
+    version: "1.18.0"
+    url: "https://github.com/vmware-tanzu/velero/releases/download/v${VERSION}/velero-v${VERSION}-linux-amd64.tar.gz"
+    extract: "velero-v${VERSION}-linux-amd64/velero"
+    binary: velero
+
+  stern:
+    # renovate: datasource=github-releases depName=stern/stern
+    version: "1.34.0"
+    url: "https://github.com/stern/stern/releases/download/v${VERSION}/stern_${VERSION}_linux_amd64.tar.gz"
+    extract: "stern"
+    binary: stern
+
+  k9s:
+    # renovate: datasource=github-releases depName=derailed/k9s
+    version: "0.50.18"
+    url: "https://github.com/derailed/k9s/releases/download/v${VERSION}/k9s_Linux_amd64.tar.gz"
+    extract: "k9s"
+    binary: k9s
+
+  kustomize:
+    # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
+    version: "5.8.1"
+    url: "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${VERSION}/kustomize_v${VERSION}_linux_amd64.tar.gz"
+    extract: "kustomize"
+    binary: kustomize
+
+  kn:
+    # renovate: datasource=github-releases depName=knative/client
+    version: "1.22.0"
+    url: "https://github.com/knative/client/releases/download/knative-v${VERSION}/kn-linux-amd64"
+    binary: kn
+
+  cosign:
+    # renovate: datasource=github-releases depName=sigstore/cosign
+    version: "3.0.6"
+    url: "https://github.com/sigstore/cosign/releases/download/v${VERSION}/cosign-linux-amd64"
+    binary: cosign
+
+  kubeseal:
+    # renovate: datasource=github-releases depName=bitnami-labs/sealed-secrets
+    version: "0.36.6"
+    url: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v${VERSION}/kubeseal-${VERSION}-linux-amd64.tar.gz"
+    extract: "kubeseal"
+    binary: kubeseal

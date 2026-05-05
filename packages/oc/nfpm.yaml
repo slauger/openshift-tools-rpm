@@ -1,0 +1,16 @@
+name: openshift-clients
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: OpenShift Command Line Interface (oc)
+vendor: Red Hat
+homepage: https://github.com/openshift/oc
+license: Apache-2.0
+
+contents:
+  - src: ./bin/oc
+    dst: /usr/local/bin/oc
+    file_info:
+      mode: 0755

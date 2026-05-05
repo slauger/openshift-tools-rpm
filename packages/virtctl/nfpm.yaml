@@ -1,0 +1,16 @@
+name: virtctl
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: KubeVirt command-line interface
+vendor: KubeVirt Authors
+homepage: https://kubevirt.io
+license: Apache-2.0
+
+contents:
+  - src: ./bin/virtctl
+    dst: /usr/local/bin/virtctl
+    file_info:
+      mode: 0755

@@ -1,0 +1,16 @@
+name: stern
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Multi pod and container log tailing for Kubernetes
+vendor: Stern Authors
+homepage: https://github.com/stern/stern
+license: Apache-2.0
+
+contents:
+  - src: ./bin/stern
+    dst: /usr/local/bin/stern
+    file_info:
+      mode: 0755

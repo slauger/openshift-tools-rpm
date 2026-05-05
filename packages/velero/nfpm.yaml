@@ -1,0 +1,16 @@
+name: velero
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Backup and migrate Kubernetes resources and persistent volumes
+vendor: VMware
+homepage: https://velero.io
+license: Apache-2.0
+
+contents:
+  - src: ./bin/velero
+    dst: /usr/local/bin/velero
+    file_info:
+      mode: 0755

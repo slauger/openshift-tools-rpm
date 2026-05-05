@@ -1,0 +1,16 @@
+name: kubeseal
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Encrypt your Kubernetes Secrets into SealedSecrets
+vendor: Bitnami Labs
+homepage: https://github.com/bitnami-labs/sealed-secrets
+license: Apache-2.0
+
+contents:
+  - src: ./bin/kubeseal
+    dst: /usr/local/bin/kubeseal
+    file_info:
+      mode: 0755

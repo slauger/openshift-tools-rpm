@@ -1,0 +1,16 @@
+name: kubectl
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Kubernetes command-line tool
+vendor: Kubernetes Authors
+homepage: https://kubernetes.io
+license: Apache-2.0
+
+contents:
+  - src: ./bin/kubectl
+    dst: /usr/local/bin/kubectl
+    file_info:
+      mode: 0755

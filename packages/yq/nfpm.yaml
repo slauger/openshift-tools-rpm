@@ -1,0 +1,16 @@
+name: yq
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: A lightweight and portable command-line YAML processor
+vendor: Mike Farah
+homepage: https://github.com/mikefarah/yq
+license: MIT
+
+contents:
+  - src: ./bin/yq
+    dst: /usr/local/bin/yq
+    file_info:
+      mode: 0755

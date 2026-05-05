@@ -1,0 +1,16 @@
+name: argocd-cli
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Argo CD command-line interface
+vendor: Argo Project
+homepage: https://argoproj.github.io/cd
+license: Apache-2.0
+
+contents:
+  - src: ./bin/argocd
+    dst: /usr/local/bin/argocd
+    file_info:
+      mode: 0755

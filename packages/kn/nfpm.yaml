@@ -1,0 +1,16 @@
+name: knative-client
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Knative command-line interface
+vendor: Knative Authors
+homepage: https://knative.dev
+license: Apache-2.0
+
+contents:
+  - src: ./bin/kn
+    dst: /usr/local/bin/kn
+    file_info:
+      mode: 0755

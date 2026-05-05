@@ -1,0 +1,69 @@
+name: Build RPM Packages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'versions.yaml'
+      - 'packages/**'
+      - 'scripts/**'
+      - 'Makefile'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          dnf install -y createrepo_c curl tar gzip unzip make
+          # Install yq
+          curl -sSfL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq
+          chmod +x /usr/local/bin/yq
+          # Install nfpm
+          curl -sSfL https://github.com/goreleaser/nfpm/releases/latest/download/nfpm_linux_amd64.tar.gz | tar xz -C /usr/local/bin nfpm
+          chmod +x /usr/local/bin/nfpm
+
+      - name: Download all binaries
+        run: make download
+
+      - name: Build RPMs
+        run: make build
+
+      - name: Create repository
+        run: make repo
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: repo/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

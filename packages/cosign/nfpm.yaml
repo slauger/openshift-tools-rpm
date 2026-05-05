@@ -1,0 +1,16 @@
+name: cosign
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Container signing, verification and storage in an OCI registry
+vendor: Sigstore
+homepage: https://github.com/sigstore/cosign
+license: Apache-2.0
+
+contents:
+  - src: ./bin/cosign
+    dst: /usr/local/bin/cosign
+    file_info:
+      mode: 0755

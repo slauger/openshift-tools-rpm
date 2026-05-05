@@ -1,0 +1,16 @@
+name: conftest
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Write tests against structured configuration data using OPA
+vendor: Open Policy Agent
+homepage: https://github.com/open-policy-agent/conftest
+license: Apache-2.0
+
+contents:
+  - src: ./bin/conftest
+    dst: /usr/local/bin/conftest
+    file_info:
+      mode: 0755

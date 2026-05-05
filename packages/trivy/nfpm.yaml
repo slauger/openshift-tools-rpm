@@ -1,0 +1,16 @@
+name: trivy
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: A comprehensive security scanner
+vendor: Aqua Security
+homepage: https://github.com/aquasecurity/trivy
+license: Apache-2.0
+
+contents:
+  - src: ./bin/trivy
+    dst: /usr/local/bin/trivy
+    file_info:
+      mode: 0755

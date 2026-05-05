@@ -1,0 +1,16 @@
+name: tekton-cli
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+release: 1
+maintainer: Simon Lauger <simon@lauger.de>
+description: Tekton Pipelines command-line interface
+vendor: Tekton Authors
+homepage: https://tekton.dev
+license: Apache-2.0
+
+contents:
+  - src: ./bin/tkn
+    dst: /usr/local/bin/tkn
+    file_info:
+      mode: 0755
