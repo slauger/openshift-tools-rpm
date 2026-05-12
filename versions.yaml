@@ -15,7 +15,7 @@ packages:
 
   kubectl:
     # renovate: datasource=github-releases depName=kubernetes/kubernetes
-    version: "1.36.0"
+    version: "1.36.1"
     url: "https://dl.k8s.io/release/v${VERSION}/bin/linux/amd64/kubectl"
     binary: kubectl
 
