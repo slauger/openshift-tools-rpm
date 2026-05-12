@@ -44,7 +44,7 @@ packages:
 
   tkn:
     # renovate: datasource=github-releases depName=tektoncd/cli
-    version: "0.44.1"
+    version: "0.45.0"
     url: "https://github.com/tektoncd/cli/releases/download/v${VERSION}/tkn_${VERSION}_Linux_x86_64.tar.gz"
     extract: "tkn"
     binary: tkn
