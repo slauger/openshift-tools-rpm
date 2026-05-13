@@ -38,7 +38,7 @@ packages:
 
   argocd:
     # renovate: datasource=github-releases depName=argoproj/argo-cd
-    version: "3.4.1"
+    version: "3.4.2"
     url: "https://github.com/argoproj/argo-cd/releases/download/v${VERSION}/argocd-linux-amd64"
     binary: argocd
 
