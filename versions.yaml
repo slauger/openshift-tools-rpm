@@ -85,7 +85,7 @@ packages:
 
   k9s:
     # renovate: datasource=github-releases depName=derailed/k9s
-    version: "0.50.18"
+    version: "0.51.0"
     url: "https://github.com/derailed/k9s/releases/download/v${VERSION}/k9s_Linux_amd64.tar.gz"
     extract: "k9s"
     binary: k9s
