@@ -21,7 +21,7 @@ packages:
 
   yq:
     # renovate: datasource=github-releases depName=mikefarah/yq
-    version: "4.53.2"
+    version: "4.53.3"
     url: "https://github.com/mikefarah/yq/releases/download/v${VERSION}/yq_linux_amd64.tar.gz"
     extract: "./yq_linux_amd64"
     binary: yq
