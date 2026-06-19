@@ -57,7 +57,7 @@ packages:
 
   trivy:
     # renovate: datasource=github-releases depName=aquasecurity/trivy
-    version: "0.71.1"
+    version: "0.71.2"
     url: "https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz"
     extract: "trivy"
     binary: trivy
