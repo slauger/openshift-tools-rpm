@@ -71,7 +71,7 @@ packages:
 
   velero:
     # renovate: datasource=github-releases depName=vmware-tanzu/velero
-    version: "1.18.1"
+    version: "1.18.2"
     url: "https://github.com/vmware-tanzu/velero/releases/download/v${VERSION}/velero-v${VERSION}-linux-amd64.tar.gz"
     extract: "velero-v${VERSION}-linux-amd64/velero"
     binary: velero
