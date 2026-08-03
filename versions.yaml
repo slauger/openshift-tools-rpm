@@ -64,7 +64,7 @@ packages:
 
   conftest:
     # renovate: datasource=github-releases depName=open-policy-agent/conftest
-    version: "0.68.2"
+    version: "0.69.0"
     url: "https://github.com/open-policy-agent/conftest/releases/download/v${VERSION}/conftest_${VERSION}_Linux_x86_64.tar.gz"
     extract: "conftest"
     binary: conftest
