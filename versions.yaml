@@ -92,7 +92,7 @@ packages:
 
   kustomize:
     # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
-    version: "5.8.2"
+    version: "5.8.3"
     url: "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${VERSION}/kustomize_v${VERSION}_linux_amd64.tar.gz"
     extract: "kustomize"
     binary: kustomize
