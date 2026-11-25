@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 PACKAGE="$1"
@@ -26,7 +26,7 @@ echo "    URL: ${URL}"
 rm -rf "${BIN_DIR}"
 mkdir -p "${BIN_DIR}"
 TMPDIR=$(mktemp -d)
-trap "rm -rf ${TMPDIR}" EXIT
+trap 'rm -rf "${TMPDIR}"' EXIT
 
 if [[ "${URL}" == *.tar.gz ]] || [[ "${URL}" == *.tgz ]]; then
     curl -sSfL "${URL}" | tar xz -C "${TMPDIR}"

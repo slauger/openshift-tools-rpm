@@ -5,7 +5,11 @@ RPM repository for OpenShift and Kubernetes CLI tools, hosted on GitHub Pages.
 ## Usage
 
 ```bash
+# dnf4 (RHEL 8/9/10, Fedora < 41)
 sudo dnf config-manager --add-repo https://slauger.github.io/openshift-tools-rpm/openshift-tools.repo
+
+# dnf5 (Fedora 41+)
+sudo dnf config-manager addrepo --from-repofile=https://slauger.github.io/openshift-tools-rpm/openshift-tools.repo
 ```
 
 Or manually create `/etc/yum.repos.d/openshift-tools.repo`:
@@ -50,14 +54,15 @@ sudo dnf install helm kubectl argocd-cli k9s
 
 - Packages are built using [nfpm](https://github.com/goreleaser/nfpm) (no spec files needed)
 - Versions are defined in `versions.yaml`
-- [Renovate](https://github.com/renovatebot/renovate) automatically creates PRs for new upstream releases (automerge for minor/patch)
-- OpenShift client (`oc`) versions are tracked via the [Cincinnati API](https://github.com/openshift/cincinnati-graph-data)
-- On every push to `main`, GitHub Actions builds all RPMs and deploys the repository to GitHub Pages via `createrepo_c`
+- [Renovate](https://github.com/renovatebot/renovate) creates PRs for new upstream releases after a minimum release age of 3 days and automerges minor/patch updates once the PR build is green
+- OpenShift client (`oc`) is tracked daily by `.github/workflows/update-oc.yaml`: it picks the newest release of the latest `stable-4.x` channel from the [Cincinnati API](https://github.com/openshift/cincinnati-graph-data), verifies the tarball on mirror.openshift.com and commits the bump to `main`
+- Every PR runs ShellCheck and a full download, RPM build and `createrepo_c` run
+- On every push to `main`, GitHub Actions builds all RPMs and deploys the repository to GitHub Pages
 
 ## Local build
 
 ```bash
-# Prerequisites: nfpm, yq, createrepo_c
+# Prerequisites: nfpm, yq (mikefarah), createrepo_c, curl
 make download  # download all binaries
 make build     # build RPMs
 make repo      # create repository metadata
