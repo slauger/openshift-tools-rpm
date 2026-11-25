@@ -60,7 +60,11 @@
     <p>Pre-built RPM packages for common OpenShift and Kubernetes CLI tools.</p>
 
     <h2>Quick Setup</h2>
-    <pre><code>sudo dnf config-manager --add-repo https://slauger.github.io/openshift-tools-rpm/openshift-tools.repo</code></pre>
+    <pre><code># dnf4 (RHEL 8/9/10, Fedora &lt; 41)
+sudo dnf config-manager --add-repo https://slauger.github.io/openshift-tools-rpm/openshift-tools.repo
+
+# dnf5 (Fedora 41+)
+sudo dnf config-manager addrepo --from-repofile=https://slauger.github.io/openshift-tools-rpm/openshift-tools.repo</code></pre>
 
     <p>Or manually create <code>/etc/yum.repos.d/openshift-tools.repo</code>:</p>
     <pre><code>[openshift-tools]
