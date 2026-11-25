@@ -99,7 +99,7 @@ packages:
 
   kn:
     # renovate: datasource=github-releases depName=knative/client
-    version: "1.22.0"
+    version: "1.24.0"
     url: "https://github.com/knative/client/releases/download/knative-v${VERSION}/kn-linux-amd64"
     binary: kn
 
