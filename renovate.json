@@ -1,18 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "automerge": true,
+  "minimumReleaseAge": "3 days",
   "automergeType": "pr",
   "platformAutomerge": true,
-  "ignoreTests": true,
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^versions\\.yaml$"],
+      "managerFilePatterns": ["/^versions\\.yaml$/"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\n\\s+version:\\s*\"(?<currentValue>.*?)\""
       ],
       "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\s+[A-Z0-9_]+_VERSION:\\s*\"(?<currentValue>[^\"]+)\""
+      ],
+      "extractVersionTemplate": "^v?(?<version>.*)$"
     }
   ],
   "packageRules": [
@@ -25,8 +32,16 @@
       "automerge": false
     },
     {
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
       "matchDepNames": ["kubernetes-sigs/kustomize"],
       "extractVersion": "^kustomize/v(?<version>.*)$"
+    },
+    {
+      "matchDepNames": ["knative/client"],
+      "extractVersion": "^knative-v(?<version>.*)$"
     }
   ]
 }
