@@ -5,28 +5,37 @@ on:
     - cron: '0 7 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: update-oc
+  cancel-in-progress: false
+
 jobs:
   update-oc:
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
-      pull-requests: write
+      actions: write
 
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install yq
-        run: |
-          curl -sSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq
-          chmod +x /usr/local/bin/yq
-
+      # yq and python3 are preinstalled on ubuntu-latest runners
       - name: Check for new OCP version
-        run: ./scripts/update-oc-version.sh
-
-      - name: Create PR if version changed
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./scripts/update-oc-version.sh
+
+      # GITHUB_TOKEN may not open PRs in this repository and pushes made with
+      # it do not trigger other workflows, so commit directly and dispatch the
+      # build explicitly. The script has already verified the client tarball.
+      - name: Commit and trigger build if version changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           if git diff --quiet versions.yaml; then
             echo "No update"
@@ -34,19 +43,11 @@ jobs:
           fi
 
           VERSION=$(yq '.packages.oc.version' versions.yaml)
-          BRANCH="automated/oc-${VERSION}"
 
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b "${BRANCH}"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add versions.yaml
-          git commit -m "Update oc to ${VERSION}"
-          git push origin "${BRANCH}"
+          git commit -m "chore(deps): update oc to ${VERSION}"
+          git push origin "HEAD:${DEFAULT_BRANCH}"
 
-          gh pr create \
-            --title "Update oc to ${VERSION}" \
-            --body "Automated update from Cincinnati stable channel." \
-            --base main \
-            --label "automerge"
-
-          gh pr merge "${BRANCH}" --auto --squash
+          gh workflow run build.yaml --ref "${DEFAULT_BRANCH}"
