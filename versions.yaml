@@ -8,7 +8,7 @@ packages:
 
   oc:
     # managed by .github/workflows/update-oc.yaml (Cincinnati API)
-    version: "4.17.12"
+    version: "4.22.22"
     url: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${VERSION}/openshift-client-linux.tar.gz"
     extract: "oc"
     binary: oc
